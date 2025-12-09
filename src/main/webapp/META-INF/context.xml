@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context docBase="D:\Workspace\ltweb\final\reeltix\target\reeltix-1.0-SNAPSHOT" path="/reeltix_war_exploded" reloadable="true">
+    <!-- Map external uploads directory -->
+    <Resources>
+        <PreResources className="org.apache.catalina.webresources.DirResourceSet"
+                     webAppMount="/uploads/posters"
+                     base="${user.home}/reeltix-uploads/posters"
+                     internalseparator="/" />
+    </Resources>
+</Context>
