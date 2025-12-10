@@ -16,6 +16,7 @@ public class AdminBookingServlet extends HttpServlet {
 
     private BookingDAO bookingDAO = new BookingDAO();
 
+    // Xử lý các yêu cầu GET và POST
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -50,6 +51,7 @@ public class AdminBookingServlet extends HttpServlet {
         }
     }
 
+    // Hiển thị danh sách đặt vé
     private void listBookings(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Lấy message từ session và chuyển sang request attribute
@@ -71,6 +73,7 @@ public class AdminBookingServlet extends HttpServlet {
         request.getRequestDispatcher("/views/admin/booking/list.jsp").forward(request, response);
     }
 
+    // Hiển thị chi tiết đặt vé
     private void viewBookingDetail(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String idParam = request.getParameter("id");
@@ -85,6 +88,7 @@ public class AdminBookingServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/admin/bookings");
     }
 
+    // Xóa đặt vé
     private void deleteBooking(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -101,6 +105,7 @@ public class AdminBookingServlet extends HttpServlet {
         }
     }
 
+    // Xác nhận đặt vé
     private void confirmBooking(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {

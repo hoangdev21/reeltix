@@ -11,7 +11,12 @@ public class Booking {
     private Timestamp NgayDat;
     private Timestamp NgayTao;
     private String TenKhachHang;
+    private String SoDienThoai;
     private String TenPhim;
+    private String NgayChieu;
+    private String GioChieu;
+    private String TenPhong;
+    private String TrangThai;
 
     public Booking() {
     }
@@ -90,11 +95,51 @@ public class Booking {
         TenKhachHang = tenKhachHang;
     }
 
+    public String getSoDienThoai() {
+        return SoDienThoai;
+    }
+
+    public void setSoDienThoai(String soDienThoai) {
+        SoDienThoai = soDienThoai;
+    }
+
     public String getTenPhim() {
         return TenPhim;
     }
 
     public void setTenPhim(String tenPhim) {
         TenPhim = tenPhim;
+    }
+
+    public String getNgayChieu() {
+        return NgayChieu;
+    }
+
+    public void setNgayChieu(String ngayChieu) {
+        NgayChieu = ngayChieu;
+    }
+
+    public String getGioChieu() {
+        return GioChieu;
+    }
+
+    public void setGioChieu(String gioChieu) {
+        GioChieu = gioChieu;
+    }
+
+    public String getTenPhong() {
+        return TenPhong;
+    }
+
+    public void setTenPhong(String tenPhong) {
+        TenPhong = tenPhong;
+    }
+
+    public String getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        TrangThai = trangThai;
     }
 }

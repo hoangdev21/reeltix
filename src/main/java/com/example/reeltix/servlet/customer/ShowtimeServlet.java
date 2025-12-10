@@ -26,7 +26,7 @@ public class ShowtimeServlet extends HttpServlet {
             showtimeDAO = new ShowtimeDAO();
             movieDAO = new MovieDAO();
         } catch (Exception e) {
-            System.err.println("Error initializing DAOs: " + e.getMessage());
+            System.err.println("Lỗi khởi tạo: " + e.getMessage());
             e.printStackTrace();
             showtimeDAO = null;
             movieDAO = null;
@@ -45,13 +45,12 @@ public class ShowtimeServlet extends HttpServlet {
                 int maphim = Integer.parseInt(movieId);
                 showtimes = showtimeDAO.findByMovie(maphim);
 
-                // Get movie details
+                // Lấy thông tin phim
                 if (movieDAO != null) {
                     movie = movieDAO.findById(maphim);
                 }
             }
 
-            // Ensure list is never null for JSP
             request.setAttribute("showtimes", showtimes != null ? showtimes : new ArrayList<>());
             request.setAttribute("movieId", movieId);
             request.setAttribute("movie", movie);

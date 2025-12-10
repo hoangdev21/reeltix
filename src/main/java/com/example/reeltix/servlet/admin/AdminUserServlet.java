@@ -31,7 +31,7 @@ public class AdminUserServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/admin/users?error=notfound");
             }
         } else {
-            // List users
+            // Dsach ng dùng
             String search = request.getParameter("search");
             String role = request.getParameter("role");
             String status = request.getParameter("status");

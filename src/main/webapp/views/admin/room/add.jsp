@@ -44,27 +44,27 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="tenPhong" class="form-label">Tên phòng <span class="text-danger">*</span></label>
+                                        <label for="tenPhong" class="form-label text-white">Tên phòng <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="tenPhong" name="tenPhong" required
                                                value="${param.tenPhong}" placeholder="VD: Phòng 1, Phòng VIP">
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="soHang" class="form-label">Số hàng ghế <span class="text-danger">*</span></label>
+                                        <label for="soHang" class="form-label text-white">Số hàng ghế <span class="text-danger">*</span></label>
                                         <input type="number" class="form-control" id="soHang" name="soHang" required
                                                value="${param.soHang}" min="1" max="26" placeholder="VD: 10">
-                                        <small class="text-muted">Tối đa 26 hàng (A-Z)</small>
+                                        <small class="text-white-50">Tối đa 26 hàng (A-Z)</small>
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="soCot" class="form-label">Số ghế mỗi hàng <span class="text-danger">*</span></label>
+                                        <label for="soCot" class="form-label text-white">Số ghế mỗi hàng <span class="text-danger">*</span></label>
                                         <input type="number" class="form-control" id="soCot" name="soCot" required
                                                value="${param.soCot}" min="1" max="20" placeholder="VD: 12">
-                                        <small class="text-muted">Tối đa 20 ghế mỗi hàng</small>
+                                        <small class="text-white-50">Tối đa 20 ghế mỗi hàng</small>
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="trangThai" class="form-label">Trạng thái</label>
+                                        <label for="trangThai" class="form-label text-white">Trạng thái</label>
                                         <select class="form-select" id="trangThai" name="trangThai">
                                             <option value="HoatDong" ${param.trangThai == 'HoatDong' ? 'selected' : ''}>Hoạt động</option>
                                             <option value="BaoTri" ${param.trangThai == 'BaoTri' ? 'selected' : ''}>Bảo trì</option>

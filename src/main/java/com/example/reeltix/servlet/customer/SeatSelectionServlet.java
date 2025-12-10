@@ -43,29 +43,28 @@ public class SeatSelectionServlet extends HttpServlet {
         try {
             int showtimeId = Integer.parseInt(showtimeIdParam);
 
-            // Get showtime information
+            // Lấy thông tin suất chiếu
             Showtime showtime = showtimeDAO.findById(showtimeId);
             if (showtime == null) {
                 response.sendRedirect(request.getContextPath() + "/customer/home");
                 return;
             }
 
-            // Get movie information
+            // Lấy thông tin phim
             Movie movie = movieDAO.findById(showtime.getMaPhim());
 
-            // Get room information
+            // Lấy thông tin phòng chiếu
             Room room = roomDAO.findById(showtime.getMaPhong());
 
-            // Get all seats for the room
+            // Lấy danh sách ghế trong phòng
             List<Seat> seats = seatDAO.findAvailableByRoom(showtime.getMaPhong());
 
-            // Get booked seats for this showtime
+            // Lấy danh sách ghế đã được đặt cho suất chiếu này
             List<Integer> bookedSeatIds = bookingDetailDAO.findBookedSeatsByShowtime(showtimeId);
 
-            // Create seat rows for display (organize by row letter)
+            // Tạo cấu trúc dữ liệu ghế theo hàng
             List<List<Map<String, Object>>> seatRows = organizeSeatsByRow(seats, bookedSeatIds);
 
-            // Set attributes for JSP
             request.setAttribute("showtime", showtime);
             request.setAttribute("movie", movie);
             request.setAttribute("room", room);
@@ -79,7 +78,6 @@ public class SeatSelectionServlet extends HttpServlet {
     }
 
     private List<List<Map<String, Object>>> organizeSeatsByRow(List<Seat> seats, List<Integer> bookedSeatIds) {
-        // Group seats by row (assuming seat names are like A1, A2, B1, B2, etc.)
         Map<String, List<Map<String, Object>>> rowMap = new HashMap<>();
 
         for (Seat seat : seats) {
@@ -96,7 +94,7 @@ public class SeatSelectionServlet extends HttpServlet {
             rowMap.computeIfAbsent(rowLetter, k -> new ArrayList<>()).add(seatInfo);
         }
 
-        // Convert to list of rows, sorted by row letter
+        // Chuyển đổi map sang danh sách sắp xếp theo thứ tự hàng
         List<List<Map<String, Object>>> seatRows = new ArrayList<>();
         rowMap.keySet().stream().sorted().forEach(rowLetter -> {
             seatRows.add(rowMap.get(rowLetter));

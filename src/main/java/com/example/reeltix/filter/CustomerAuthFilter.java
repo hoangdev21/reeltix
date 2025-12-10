@@ -16,6 +16,7 @@ public class CustomerAuthFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
     }
 
+    // Kiểm tra xác thực cho các trang khách hàng
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {

@@ -20,13 +20,16 @@
     .navbar-main {
         background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
         border-bottom: 2px solid var(--primary-color);
-        padding: 15px 0;
+        height: 80px;
+        padding: 0;
+        display: flex;
+        align-items: center;
         transition: all 0.3s ease;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
     .navbar-main.scrolled {
-        padding: 10px 0;
+        height: 60px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
 
@@ -216,6 +219,17 @@
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23e50914' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     }
 
+    .navbar-logo {
+        height: 70px;
+        max-height: 100%;
+        width: auto;
+        transition: all 0.3s ease;
+    }
+
+    .navbar-logo:hover {
+        transform: scale(1.05);
+    }
+
     @media (max-width: 991px) {
         .header-search {
             margin: 10px 0;
@@ -240,8 +254,7 @@
     <div class="container">
         <!-- Logo -->
         <a class="navbar-brand" href="${pageContext.request.contextPath}/">
-            <i class="fas fa-film"></i>
-            <span class="brand-text">Reeltix</span>
+            <img src="${pageContext.request.contextPath}/assets/images/logo/logo-reel.png" alt="Reeltix Logo" class="navbar-logo">
         </a>
 
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"

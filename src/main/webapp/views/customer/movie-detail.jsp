@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -50,7 +51,7 @@
                             <a href="${pageContext.request.contextPath}/customer/seat-selection?showtimeId=${showtime.maSuatChieu}"
                                class="btn btn-outline-light showtime-btn">
                                 ${showtime.ngayChieu} - ${showtime.gioChieu}
-                                <small class="d-block">${showtime.giaVe}đ</small>
+                                <small class="d-block"><fmt:formatNumber value="${showtime.giaVe}" type="number" groupingUsed="true" maxFractionDigits="0"/> VNĐ</small>
                             </a>
                         </c:forEach>
                         <c:if test="${empty showtimes}">

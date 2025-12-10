@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -34,10 +35,10 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="mb-0"><i class="fas fa-check-circle me-2 text-success"></i>Xác nhận đặt vé</h4>
+                        <h4 class="mb-0 text-white"><i class="fas fa-check-circle me-2 text-success"></i>Xác nhận đặt vé</h4>
                     </div>
                     <div class="card-body">
-                        <h5 class="mb-4">Thông tin phim</h5>
+                        <h5 class="mb-4 text-white">Thông tin phim</h5>
                         <div class="row mb-4">
                             <div class="col-md-4">
                                 <c:choose>
@@ -51,14 +52,14 @@
                                     </c:otherwise>
                                 </c:choose>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-8 text-white">
                                 <h5>${movie.tenPhim}</h5>
                                 <p><strong>Thể loại:</strong> ${movie.theLoai}</p>
                                 <p><strong>Thời lượng:</strong> ${movie.thoiLuong} phút</p>
                             </div>
                         </div>
 
-                        <h5 class="mb-3">Thông tin suất chiếu</h5>
+                        <h5 class="mb-3 text-white">Thông tin suất chiếu</h5>
                         <table class="table table-dark table-bordered mb-4">
                             <tr>
                                 <th>Ngày chiếu</th>
@@ -74,7 +75,7 @@
                             </tr>
                         </table>
 
-                        <h5 class="mb-3">Ghế đã chọn</h5>
+                        <h5 class="mb-3 text-white">Ghế đã chọn</h5>
                         <div class="mb-4">
                             <c:forEach var="seat" items="${selectedSeats}" varStatus="status">
                                 <span class="badge bg-danger me-1">${seat.tenGhe}</span>
@@ -83,14 +84,14 @@
 
                         <hr>
                         <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h4 class="mb-0">Tổng tiền:</h4>
-                            <h4 class="text-danger mb-0">${totalPrice}đ</h4>
+                            <h4 class="mb-0 text-white">Tổng tiền:</h4>
+                            <h4 class="text-danger mb-0"><fmt:formatNumber value="${totalPrice}" type="number" groupingUsed="true" maxFractionDigits="0"/> VNĐ</h4>
                         </div>
 
-                        <form action="${pageContext.request.contextPath}/customer/payment" method="post">
+                        <form action="${pageContext.request.contextPath}/customer/payment" method="post" id="paymentForm">
                             <input type="hidden" name="showtimeId" value="${showtime.maSuatChieu}">
                             <input type="hidden" name="selectedSeats" value="${selectedSeatsParam}">
-                            <input type="hidden" name="totalPrice" value="${totalPrice}">
+                            <input type="hidden" name="totalPrice" id="totalPriceInput" value="${totalPrice}">
                             <div class="d-flex gap-3">
                                 <a href="${pageContext.request.contextPath}/customer/seat-selection?showtimeId=${showtime.maSuatChieu}"
                                    class="btn btn-secondary">
@@ -101,6 +102,14 @@
                                 </button>
                             </div>
                         </form>
+
+                        <script>
+                            // Đảm bảo totalPrice được gửi dưới dạng số thô, không phải chuỗi format
+                            document.getElementById('paymentForm').addEventListener('submit', function(e) {
+                                // totalPrice đã được set trong value, không cần thay đổi
+                                // chỉ cần đảm bảo nó là số, không phải chuỗi có dấu phân cách
+                            });
+                        </script>
                     </div>
                 </div>
             </div>

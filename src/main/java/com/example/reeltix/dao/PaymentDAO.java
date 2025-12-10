@@ -9,6 +9,7 @@ import java.util.List;
 
 public class PaymentDAO {
 
+    // Tìm thanh toán theo mã thanh toán
     public Payment findById(int maThanhToan) {
         String sql = "SELECT * FROM ThanhToan WHERE MaThanhToan = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -25,6 +26,7 @@ public class PaymentDAO {
         return null;
     }
 
+    // Tìm thanh toán theo mã đơn
     public Payment findByBooking(String maDon) {
         String sql = "SELECT * FROM ThanhToan WHERE MaDon = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -41,6 +43,7 @@ public class PaymentDAO {
         return null;
     }
 
+    // Lấy tất cả thanh toán, sắp xếp theo ngày thanh toán giảm dần
     public List<Payment> findAll() {
         List<Payment> payments = new ArrayList<>();
         String sql = "SELECT * FROM ThanhToan ORDER BY NgayThanhToan DESC";
@@ -56,6 +59,7 @@ public class PaymentDAO {
         return payments;
     }
 
+    // Thêm mới thanh toán
     public boolean insert(Payment payment) {
         String sql = "INSERT INTO ThanhToan (MaDon, PhuongThuc, SoTien, TrangThai) VALUES (?, ?, ?, ?)";
         try (Connection conn = DBConnection.getNewConnection();
@@ -80,6 +84,7 @@ public class PaymentDAO {
         return false;
     }
 
+    // Cập nhật trạng thái thanh toán
     public boolean updateStatus(int maThanhToan, String trangThai) {
         String sql = "UPDATE ThanhToan SET TrangThai = ? WHERE MaThanhToan = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -94,6 +99,7 @@ public class PaymentDAO {
         return false;
     }
 
+    // Xóa thanh toán theo mã thanh toán
     public boolean delete(int maThanhToan) {
         String sql = "DELETE FROM ThanhToan WHERE MaThanhToan = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -106,6 +112,7 @@ public class PaymentDAO {
         return false;
     }
 
+    // Chuyển đổi ResultSet thành đối tượng Payment
     private Payment mapResultSetToPayment(ResultSet rs) throws SQLException {
         Payment payment = new Payment();
         payment.setMaThanhToan(rs.getInt("MaThanhToan"));

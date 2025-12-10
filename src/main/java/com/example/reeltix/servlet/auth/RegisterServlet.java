@@ -31,21 +31,21 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String soDienThoai = request.getParameter("soDienThoai");
 
-        // Validate
+        // Xử lý đăng ký
         if (!matKhau.equals(xacNhanMatKhau)) {
             request.setAttribute("error", "Mật khẩu xác nhận không khớp!");
             request.getRequestDispatcher("/views/auth/register.jsp").forward(request, response);
             return;
         }
 
-        // Check username exists
+        // Kiểm tra tên đăng nhập đã tồn tại
         if (userDAO.findByUsername(tenDangNhap) != null) {
             request.setAttribute("error", "Tên đăng nhập đã tồn tại!");
             request.getRequestDispatcher("/views/auth/register.jsp").forward(request, response);
             return;
         }
 
-        // Create user
+        // Tạo ng dùng mới
         User user = new User();
         user.setTenDangNhap(tenDangNhap);
         user.setMatKhau(matKhau);

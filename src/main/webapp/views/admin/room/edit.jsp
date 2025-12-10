@@ -45,13 +45,27 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="tenPhong" class="form-label">Tên phòng <span class="text-danger">*</span></label>
+                                        <label for="tenPhong" class="form-label text-white">Tên phòng <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="tenPhong" name="tenPhong" required
                                                value="${room.tenPhong}" placeholder="VD: Phòng 1, Phòng VIP">
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="trangThai" class="form-label">Trạng thái</label>
+                                        <label for="soHang" class="form-label text-white">Số hàng ghế <span class="text-danger">*</span></label>
+                                        <input type="number" class="form-control" id="soHang" name="soHang" required
+                                               value="${room.soHang}" min="1" max="26" placeholder="VD: 10">
+                                        <small class="text-white-50">Tối đa 26 hàng (A-Z)</small>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="soCot" class="form-label text-white">Số ghế mỗi hàng <span class="text-danger">*</span></label>
+                                        <input type="number" class="form-control" id="soCot" name="soCot" required
+                                               value="${room.soCot}" min="1" max="20" placeholder="VD: 12">
+                                        <small class="text-white-50">Tối đa 20 ghế mỗi hàng</small>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="trangThai" class="form-label text-white">Trạng thái</label>
                                         <select class="form-select" id="trangThai" name="trangThai">
                                             <option value="HoatDong" ${room.trangThai == 'HoatDong' ? 'selected' : ''}>Hoạt động</option>
                                             <option value="BaoTri" ${room.trangThai == 'BaoTri' ? 'selected' : ''}>Bảo trì</option>
@@ -66,7 +80,8 @@
                                             <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Thông tin phòng</h5>
                                         </div>
                                         <div class="card-body">
-                                            <p><i class="fas fa-chair me-2"></i>Số ghế hiện tại: <strong>${room.soLuongGhe}</strong></p>
+                                            <p><i class="fas fa-chair me-2"></i>Tổng số ghế: <strong id="totalSeats">${room.soLuongGhe}</strong></p>
+                                            <p><i class="fas fa-th me-2"></i>Bố cục: <span id="layout">${room.soHang} x ${room.soCot}</span></p>
                                             <p><i class="fas fa-hashtag me-2"></i>Mã phòng: <strong>${room.maPhong}</strong></p>
                                             <hr>
                                             <a href="${pageContext.request.contextPath}/admin/rooms/seats?id=${room.maPhong}" class="btn btn-info w-100">
@@ -92,6 +107,16 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function updateInfo() {
+            const rows = parseInt(document.getElementById('soHang').value) || 0;
+            const cols = parseInt(document.getElementById('soCot').value) || 0;
+            document.getElementById('totalSeats').textContent = rows * cols;
+            document.getElementById('layout').textContent = rows + ' x ' + cols;
+        }
+        document.getElementById('soHang').addEventListener('input', updateInfo);
+        document.getElementById('soCot').addEventListener('input', updateInfo);
+        updateInfo();
+    </script>
 </body>
 </html>
-

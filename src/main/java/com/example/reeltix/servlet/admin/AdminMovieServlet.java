@@ -27,6 +27,7 @@ public class AdminMovieServlet extends HttpServlet {
 
     private MovieDAO movieDAO = new MovieDAO();
 
+    // Xử lý các yêu cầu GET
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -44,7 +45,7 @@ public class AdminMovieServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/admin/movies?error=notfound");
             }
         } else {
-            // List movies
+            // Danh sách phim
             String search = request.getParameter("search");
             String status = request.getParameter("status");
             List<Movie> movies;
@@ -73,6 +74,7 @@ public class AdminMovieServlet extends HttpServlet {
         }
     }
 
+    // Xử lý thêm phim
     private void addMovie(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -91,7 +93,7 @@ public class AdminMovieServlet extends HttpServlet {
                 movie.setNgayKhoiChieu(new Timestamp(sdf.parse(ngayKhoiChieu).getTime()));
             }
 
-            // Handle file upload
+            // Xử lý tải lên file poster
             try {
                 Part filePart = request.getPart("poster");
                 String uploadBasePath = FileUploadUtil.getUploadBasePath(
@@ -102,7 +104,7 @@ public class AdminMovieServlet extends HttpServlet {
                     movie.setAnhPoster(fileName);
                 }
             } catch (Exception e) {
-                System.err.println("❌ Error uploading file: " + e.getMessage());
+                System.err.println("Lỗi: " + e.getMessage());
                 e.printStackTrace();
                 request.setAttribute("error", "Lỗi khi tải lên poster: " + e.getMessage());
                 request.getRequestDispatcher("/views/admin/movie/add.jsp").forward(request, response);
@@ -121,6 +123,7 @@ public class AdminMovieServlet extends HttpServlet {
         }
     }
 
+    // Xử lý cập nhật phim
     private void updateMovie(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -153,7 +156,7 @@ public class AdminMovieServlet extends HttpServlet {
                 movie.setNgayKhoiChieu(new Timestamp(sdf.parse(ngayKhoiChieu).getTime()));
             }
 
-            // Handle file upload
+            // Xử lý tải lên file poster
             try {
                 Part filePart = request.getPart("poster");
                 String uploadBasePath = FileUploadUtil.getUploadBasePath(
@@ -164,7 +167,7 @@ public class AdminMovieServlet extends HttpServlet {
                     movie.setAnhPoster(fileName);
                 }
             } catch (Exception e) {
-                System.err.println("❌ Error uploading file: " + e.getMessage());
+                System.err.println("Lỗi: " + e.getMessage());
                 e.printStackTrace();
                 request.setAttribute("error", "Lỗi khi tải lên poster: " + e.getMessage());
                 request.setAttribute("movie", movie);
@@ -185,6 +188,7 @@ public class AdminMovieServlet extends HttpServlet {
         }
     }
 
+    // Xử lý xóa phim
     private void deleteMovie(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -199,7 +203,7 @@ public class AdminMovieServlet extends HttpServlet {
                         getServletContext().getRealPath("/")
                     );
                 } catch (Exception e) {
-                    System.err.println("⚠ Warning: Could not delete poster file: " + e.getMessage());
+                    System.err.println("Lỗi không thể xóa Poster: " + e.getMessage());
                 }
             }
             response.sendRedirect(request.getContextPath() + "/admin/movies?message=deleted");

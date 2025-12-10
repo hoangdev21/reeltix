@@ -5,16 +5,20 @@ public class Room {
     private String TenPhong;
     private int SoLuongGhe;
     private String TrangThai;
+    private int SoHang;
+    private int SoCot;
 
     // Constructors, getters, and setters
     public Room() {
     }
 
-    public Room(int maPhong, String tenPhong, int soLuongGhe, String trangThai) {
+    public Room(int maPhong, String tenPhong, int soLuongGhe, String trangThai, int soHang, int soCot) {
         MaPhong = maPhong;
         TenPhong = tenPhong;
         SoLuongGhe = soLuongGhe;
         TrangThai = trangThai;
+        SoHang = soHang;
+        SoCot = soCot;
     }
 
     public int getMaPhong() {
@@ -47,5 +51,21 @@ public class Room {
 
     public void setTrangThai(String trangThai) {
         TrangThai = trangThai;
+    }
+
+    public int getSoHang() {
+        return SoHang;
+    }
+
+    public void setSoHang(int soHang) {
+        SoHang = soHang;
+    }
+
+    public int getSoCot() {
+        return SoCot;
+    }
+
+    public void setSoCot(int soCot) {
+        SoCot = soCot;
     }
 }

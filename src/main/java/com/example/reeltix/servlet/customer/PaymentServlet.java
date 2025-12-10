@@ -42,7 +42,7 @@ public class PaymentServlet extends HttpServlet {
         if (showtimeIdParam == null || showtimeIdParam.isEmpty() ||
             selectedSeatsParam == null || selectedSeatsParam.isEmpty() ||
             totalPriceParam == null || totalPriceParam.isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/home");
+            response.sendRedirect(request.getContextPath() + "/");
             return;
         }
 
@@ -50,21 +50,21 @@ public class PaymentServlet extends HttpServlet {
             int showtimeId = Integer.parseInt(showtimeIdParam);
             double totalPrice = Double.parseDouble(totalPriceParam);
 
-            // Get user ID from session
+            // Lấy user ID từ session
             Object userObj = session.getAttribute("user");
             int userId = 0;
             if (userObj instanceof com.example.reeltix.model.User) {
                 userId = ((com.example.reeltix.model.User) userObj).getMaNguoiDung();
             }
 
-            // Generate booking ID
+            // Tạo mã đặt vé
             String bookingId = bookingDAO.generateBookingId();
 
-            // Parse selected seats
+            // Tách danh sách ghế đã chọn
             String[] seatIdStrings = selectedSeatsParam.split(",");
             int seatCount = seatIdStrings.length;
 
-            // Create and insert booking
+            // Tạo và insert booking
             Booking booking = new Booking();
             booking.setMaDon(bookingId);
             booking.setMaKhachHang(userId);
@@ -75,11 +75,11 @@ public class PaymentServlet extends HttpServlet {
             booking.setNgayTao(new Timestamp(System.currentTimeMillis()));
 
             if (!bookingDAO.insert(booking)) {
-                response.sendRedirect(request.getContextPath() + "/home");
+                response.sendRedirect(request.getContextPath() + "/");
                 return;
             }
 
-            // Insert booking details for each seat and collect seat names
+            // Tạo và insert booking details
             List<String> seatNames = new ArrayList<>();
             for (String seatIdStr : seatIdStrings) {
                 int seatId = Integer.parseInt(seatIdStr.trim());
@@ -96,20 +96,20 @@ public class PaymentServlet extends HttpServlet {
                 }
             }
 
-            // Create and insert payment record
+            // Tạo và insert payment
             Payment payment = new Payment();
             payment.setMaDon(bookingId);
-            payment.setPhuongThuc("Online");
+            payment.setPhuongThuc("VNPay");
             payment.setSoTien(totalPrice);
-            payment.setTrangThai("Completed");
+            payment.setTrangThai("ThanhCong");
             payment.setNgayThanhToan(new Timestamp(System.currentTimeMillis()));
 
             if (!paymentDAO.insert(payment)) {
-                response.sendRedirect(request.getContextPath() + "/home");
+                response.sendRedirect(request.getContextPath() + "/");
                 return;
             }
 
-            // Get showtime, movie, and room info for success page
+            // Lấy thông tin showtime, movie, room để hiển thị
             Showtime showtime = showtimeDAO.findById(showtimeId);
             Movie movie = null;
             Room room = null;
@@ -118,7 +118,6 @@ public class PaymentServlet extends HttpServlet {
                 room = roomDAO.findById(showtime.getMaPhong());
             }
 
-            // Set attributes for success page
             request.setAttribute("booking", booking);
             request.setAttribute("movie", movie);
             request.setAttribute("showtime", showtime);
@@ -129,7 +128,10 @@ public class PaymentServlet extends HttpServlet {
 
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/home");
+            response.sendRedirect(request.getContextPath() + "/");
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/");
         }
     }
 }

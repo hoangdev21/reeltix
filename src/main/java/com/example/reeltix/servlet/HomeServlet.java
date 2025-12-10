@@ -22,7 +22,7 @@ public class HomeServlet extends HttpServlet {
         try {
             movieDAO = new MovieDAO();
         } catch (Exception e) {
-            System.err.println("Error initializing MovieDAO: " + e.getMessage());
+            System.err.println("Lỗi khởi tạo: " + e.getMessage());
             e.printStackTrace();
             movieDAO = null;
         }
@@ -40,7 +40,6 @@ public class HomeServlet extends HttpServlet {
                 comingSoonMovies = movieDAO.findComingSoon();
             }
 
-            // Ensure lists are never null for JSP
             request.setAttribute("nowShowingMovies", nowShowingMovies != null ? nowShowingMovies : new ArrayList<>());
             request.setAttribute("comingSoonMovies", comingSoonMovies != null ? comingSoonMovies : new ArrayList<>());
 
@@ -48,7 +47,6 @@ public class HomeServlet extends HttpServlet {
         } catch (Exception e) {
             System.err.println("Error in HomeServlet.doGet: " + e.getMessage());
             e.printStackTrace();
-            // Set empty lists on error to prevent JSP errors
             request.setAttribute("nowShowingMovies", new ArrayList<>());
             request.setAttribute("comingSoonMovies", new ArrayList<>());
             request.getRequestDispatcher("/index.jsp").forward(request, response);

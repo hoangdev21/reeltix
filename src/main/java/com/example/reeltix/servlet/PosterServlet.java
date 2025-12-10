@@ -12,9 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-/**
- * Servlet phục vụ ảnh poster từ external upload directory
- */
+
 @WebServlet(urlPatterns = {"/uploads/posters/*"})
 public class PosterServlet extends HttpServlet {
 
@@ -29,7 +27,6 @@ public class PosterServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
-
         // Loại bỏ dấu "/" đầu tiên
         String fileName = pathInfo.substring(1);
         
@@ -57,7 +54,7 @@ public class PosterServlet extends HttpServlet {
             return;
         }
 
-        // Kiểm tra file có nằm trong uploads directory không (security check)
+        // Kiểm tra file có nằm trong uploads directory không
         try {
             if (!file.getCanonicalPath().startsWith(new File(externalUploadPath).getCanonicalPath()) &&
                 !file.getCanonicalPath().startsWith(request.getServletContext().getRealPath("/uploads/posters/"))) {
@@ -84,7 +81,7 @@ public class PosterServlet extends HttpServlet {
                 os.write(buffer, 0, bytesRead);
             }
         } catch (IOException e) {
-            System.err.println("❌ Error serving poster file: " + e.getMessage());
+            System.err.println("Lỗi: " + e.getMessage());
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }

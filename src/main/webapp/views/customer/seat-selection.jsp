@@ -8,6 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -464,7 +465,7 @@
                 <!-- Screen -->
                 <div class="screen-container">
                     <div class="screen"></div>
-                    <div class="screen-label">MÀNG HÌNH</div>
+                    <div class="screen-label">MÀN HÌNH</div>
                 </div>
 
                 <!-- Seats -->
@@ -559,7 +560,7 @@
                         <div class="price-section">
                             <div class="price-row">
                                 <span class="price-label">Giá vé (cơ bản)</span>
-                                <span class="price-value">${showtime.giaVe}đ</span>
+                                <span class="price-value"><fmt:formatNumber value="${showtime.giaVe}" type="number" groupingUsed="true" maxFractionDigits="0"/> VNĐ</span>
                             </div>
                             <div class="price-row">
                                 <span class="price-label">Số ghế</span>
@@ -567,12 +568,12 @@
                             </div>
                             <div class="price-row">
                                 <span class="price-label">Phụ thu ghế</span>
-                                <span class="price-value" id="seatExtra">0đ</span>
+                                <span class="price-value" id="seatExtra">0 VNĐ</span>
                             </div>
                             <hr style="margin: 10px 0; opacity: 0.3;">
                             <div class="price-row">
                                 <span class="price-label total-price"><i class="fas fa-calculator me-1"></i>Tổng cộng</span>
-                                <span class="price-value total-price"><span id="totalPrice">0</span>đ</span>
+                                <span class="price-value total-price"><span id="totalPrice">0</span> VNĐ</span>
                             </div>
                         </div>
                     </div>
@@ -625,7 +626,7 @@
 
             if (selectedSeats.length === 0) {
                 seatsDiv.innerHTML = '<span class="empty-seats-text">Chưa chọn ghế</span>';
-                extraSpan.textContent = '0đ';
+                extraSpan.textContent = '0 VNĐ';
                 seatCountSpan.textContent = '0';
                 totalSpan.textContent = '0';
                 continueBtn.disabled = true;
@@ -637,9 +638,9 @@
                 const extra = selectedSeats.reduce((sum, s) => sum + s.price, 0);
                 const total = (basePrice * selectedSeats.length) + extra;
 
-                extraSpan.textContent = extra.toLocaleString() + 'đ';
+                extraSpan.textContent = extra.toLocaleString('vi-VN') + ' VNĐ';
                 seatCountSpan.textContent = selectedSeats.length;
-                totalSpan.textContent = total.toLocaleString();
+                totalSpan.textContent = total.toLocaleString('vi-VN');
                 seatsInput.value = selectedSeats.map(s => s.id).join(',');
                 priceInput.value = total;
                 continueBtn.disabled = false;

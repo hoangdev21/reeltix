@@ -81,7 +81,7 @@ public class DashboardServlet extends HttpServlet {
             request.getRequestDispatcher("/views/admin/dashboard.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
-            // Set default values on error
+            // Đặt các giá trị mặc định trong trường hợp lỗi
             request.setAttribute("totalUsers", 0);
             request.setAttribute("totalMovies", 0);
             request.setAttribute("totalBookings", 0);

@@ -66,6 +66,7 @@ public class AdminShowtimeServlet extends HttpServlet {
         }
     }
 
+    // Hiển thị danh sách suất chiếu
     private void listShowtimes(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Lấy message từ session
@@ -94,6 +95,7 @@ public class AdminShowtimeServlet extends HttpServlet {
         request.getRequestDispatcher("/views/admin/showtime/list.jsp").forward(request, response);
     }
 
+    // Hiển thị form thêm suất chiếu mới
     private void showAddForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Lấy danh sách phim và phòng cho form
@@ -106,6 +108,7 @@ public class AdminShowtimeServlet extends HttpServlet {
         request.getRequestDispatcher("/views/admin/showtime/add.jsp").forward(request, response);
     }
 
+    // Hiển thị form chỉnh sửa suất chiếu
     private void editShowtime(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String idParam = request.getParameter("id");
@@ -129,12 +132,13 @@ public class AdminShowtimeServlet extends HttpServlet {
                     return;
                 }
             } catch (NumberFormatException e) {
-                // Invalid ID format
+                e.printStackTrace();
             }
         }
         response.sendRedirect(request.getContextPath() + "/admin/showtimes");
     }
 
+    // Xử lý thêm suất chiếu mới
     private void addShowtime(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -146,7 +150,6 @@ public class AdminShowtimeServlet extends HttpServlet {
             String giaVeStr = request.getParameter("giaVe");
             String trangThai = request.getParameter("trangThai");
 
-            // Validate dữ liệu
             if (maPhimStr == null || maPhimStr.isEmpty() ||
                 maPhongStr == null || maPhongStr.isEmpty() ||
                 ngayChieuStr == null || ngayChieuStr.isEmpty() ||
@@ -158,28 +161,24 @@ public class AdminShowtimeServlet extends HttpServlet {
                 return;
             }
 
-            // Parse dữ liệu
             int maPhim = Integer.parseInt(maPhimStr);
             int maPhong = Integer.parseInt(maPhongStr);
             LocalDate ngayChieu = LocalDate.parse(ngayChieuStr);
             LocalTime gioChieu = LocalTime.parse(gioChieuStr);
             double giaVe = Double.parseDouble(giaVeStr);
 
-            // Validate giá vé
             if (giaVe < 10000) {
                 request.getSession().setAttribute("error", "Giá vé tối thiểu là 10.000 đ!");
                 response.sendRedirect(request.getContextPath() + "/admin/showtimes/add");
                 return;
             }
 
-            // Validate ngày chiếu không được trong quá khứ
             if (ngayChieu.isBefore(LocalDate.now())) {
                 request.getSession().setAttribute("error", "Ngày chiếu không được trong quá khứ!");
                 response.sendRedirect(request.getContextPath() + "/admin/showtimes/add");
                 return;
             }
 
-            // Tạo object Showtime
             Showtime showtime = new Showtime();
             showtime.setMaPhim(maPhim);
             showtime.setMaPhong(maPhong);
@@ -205,6 +204,7 @@ public class AdminShowtimeServlet extends HttpServlet {
         }
     }
 
+    // Xử lý cập nhật suất chiếu
     private void updateShowtime(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -217,7 +217,6 @@ public class AdminShowtimeServlet extends HttpServlet {
             String giaVeStr = request.getParameter("giaVe");
             String trangThai = request.getParameter("trangThai");
 
-            // Validate dữ liệu
             if (maSuatChieuStr == null || maSuatChieuStr.isEmpty() ||
                 maPhimStr == null || maPhimStr.isEmpty() ||
                 maPhongStr == null || maPhongStr.isEmpty() ||
@@ -230,7 +229,6 @@ public class AdminShowtimeServlet extends HttpServlet {
                 return;
             }
 
-            // Parse dữ liệu
             int maSuatChieu = Integer.parseInt(maSuatChieuStr);
             int maPhim = Integer.parseInt(maPhimStr);
             int maPhong = Integer.parseInt(maPhongStr);
@@ -238,14 +236,12 @@ public class AdminShowtimeServlet extends HttpServlet {
             LocalTime gioChieu = LocalTime.parse(gioChieuStr);
             double giaVe = Double.parseDouble(giaVeStr);
 
-            // Validate giá vé
             if (giaVe < 10000) {
                 request.getSession().setAttribute("error", "Giá vé tối thiểu là 10.000 đ!");
                 response.sendRedirect(request.getContextPath() + "/admin/showtimes");
                 return;
             }
 
-            // Tạo object Showtime
             Showtime showtime = new Showtime();
             showtime.setMaSuatChieu(maSuatChieu);
             showtime.setMaPhim(maPhim);
@@ -272,6 +268,7 @@ public class AdminShowtimeServlet extends HttpServlet {
         }
     }
 
+    // Xử lý xóa suất chiếu
     private void deleteShowtime(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {

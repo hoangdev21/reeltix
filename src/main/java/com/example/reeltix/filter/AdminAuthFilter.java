@@ -16,6 +16,7 @@ public class AdminAuthFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
     }
 
+    // Kiểm tra xác thực cho các trang admin
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {

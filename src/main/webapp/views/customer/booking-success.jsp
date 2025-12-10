@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -39,7 +40,7 @@
                     <p><strong>Suất chiếu:</strong> ${showtime.ngayChieu} - ${showtime.gioChieu}</p>
                     <p><strong>Phòng:</strong> ${room.tenPhong}</p>
                     <p><strong>Ghế:</strong> ${selectedSeatNames}</p>
-                    <p><strong>Tổng tiền:</strong> <span class="text-danger">${booking.tongTien}đ</span></p>
+                    <p><strong>Tổng tiền:</strong> <span class="text-danger"><fmt:formatNumber value="${booking.tongTien}" type="number" groupingUsed="true" maxFractionDigits="0"/> VNĐ</span></p>
                 </div>
             </div>
 

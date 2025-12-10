@@ -44,10 +44,10 @@ public class FileUploadUtil {
         
         try {
             filePart.write(externalUploadedFile.getAbsolutePath());
-            System.out.println("✓ File saved to external location: " + externalUploadedFile.getAbsolutePath());
+            System.out.println("File được luu vào: " + externalUploadedFile.getAbsolutePath());
         } catch (IOException e) {
-            System.err.println("❌ Error uploading file to external location: " + e.getMessage());
-            throw new IOException("Failed to save file: " + e.getMessage());
+            System.err.println("Lỗi:" + e.getMessage());
+            throw new IOException("Lưu file thất bại: " + e.getMessage());
         }
 
         // Cũng lưu vào webapp/uploads/posters để phục vụ trong lúc dev
@@ -61,9 +61,9 @@ public class FileUploadUtil {
             File webappUploadedFile = new File(webappUploadPath + fileName);
             try {
                 Files.copy(externalUploadedFile.toPath(), webappUploadedFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                System.out.println("✓ File also copied to webapp: " + webappUploadedFile.getAbsolutePath());
+                System.out.println("File được copy vào webapp: " + webappUploadedFile.getAbsolutePath());
             } catch (IOException e) {
-                System.err.println("⚠ Warning: Could not copy file to webapp: " + e.getMessage());
+                System.err.println("Lỗi: " + e.getMessage());
                 // File đã lưu vào external, vậy không cần throw exception
             }
         }
@@ -84,9 +84,9 @@ public class FileUploadUtil {
         File externalUploadedFile = new File(externalUploadPath + File.separator + fileName);
         if (externalUploadedFile.exists()) {
             if (externalUploadedFile.delete()) {
-                System.out.println("✓ File deleted from external location: " + externalUploadedFile.getAbsolutePath());
+                System.out.println("File được xóa: " + externalUploadedFile.getAbsolutePath());
             } else {
-                System.err.println("❌ Failed to delete external file: " + externalUploadedFile.getAbsolutePath());
+                System.err.println("Không thể xóa file: " + externalUploadedFile.getAbsolutePath());
             }
         }
 
@@ -96,9 +96,9 @@ public class FileUploadUtil {
             File webappUploadedFile = new File(webappUploadPath + fileName);
             if (webappUploadedFile.exists()) {
                 if (webappUploadedFile.delete()) {
-                    System.out.println("✓ File deleted from webapp: " + webappUploadedFile.getAbsolutePath());
+                    System.out.println("File được xóa từ webapp: " + webappUploadedFile.getAbsolutePath());
                 } else {
-                    System.err.println("❌ Failed to delete webapp file: " + webappUploadedFile.getAbsolutePath());
+                    System.err.println("Lỗi không thể xóa file: " + webappUploadedFile.getAbsolutePath());
                 }
             }
         }

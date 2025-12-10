@@ -46,9 +46,8 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
 
-            // Kiểm tra vai trò và redirect phù hợp
+            // Kiểm tra vai trò và chuyển hướng phù hợp
             if ("Admin".equalsIgnoreCase(user.getVaiTro())) {
-                // Lưu thêm session attribute "admin" để AdminAuthFilter nhận diện
                 session.setAttribute("admin", user);
                 response.sendRedirect(request.getContextPath() + "/admin/dashboard");
             } else {

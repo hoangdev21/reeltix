@@ -9,6 +9,7 @@ import java.util.List;
 
 public class BookingDetailDAO {
 
+    // Tìm kiếm chi tiết đặt vé theo mã đơn
     public List<BookingDetail> findByBooking(String maDon) {
         List<BookingDetail> details = new ArrayList<>();
         String sql = "SELECT * FROM ChiTietDatVe WHERE MaDon = ?";
@@ -24,6 +25,33 @@ public class BookingDetailDAO {
             e.printStackTrace();
         }
         return details;
+    }
+
+    // Tìm tên ghế đã đặt theo mã đơn
+    public List<String> findSeatNamesByBooking(String maDon) {
+        List<String> seatNames = new ArrayList<>();
+        String sql = "SELECT g.TenGhe FROM ChiTietDatVe ct " +
+                     "INNER JOIN GheNgoi g ON ct.MaGhe = g.MaGhe " +
+                     "WHERE ct.MaDon = ? " +
+                     "ORDER BY g.TenGhe";
+        try (Connection conn = DBConnection.getNewConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, maDon);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    seatNames.add(rs.getString("TenGhe"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seatNames;
+    }
+
+    // Lấy chuỗi tên ghế đã đặt, phân tách bằng dấu phẩy
+    public String getSeatNamesString(String maDon) {
+        List<String> seatNames = findSeatNamesByBooking(maDon);
+        return String.join(", ", seatNames);
     }
 
     public boolean insert(BookingDetail detail) {
@@ -49,6 +77,7 @@ public class BookingDetailDAO {
         return false;
     }
 
+    // Chèn nhiều chi tiết đặt vé trong một giao dịch
     public boolean insertBatch(List<BookingDetail> details) {
         String sql = "INSERT INTO ChiTietDatVe (MaDon, MaGhe, GiaGhe) VALUES (?, ?, ?)";
         try (Connection conn = DBConnection.getNewConnection();
@@ -71,6 +100,7 @@ public class BookingDetailDAO {
         return false;
     }
 
+    // Xóa chi tiết đặt vé theo mã đơn
     public boolean deleteByBooking(String maDon) {
         String sql = "DELETE FROM ChiTietDatVe WHERE MaDon = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -83,6 +113,7 @@ public class BookingDetailDAO {
         return false;
     }
 
+    // Tìm danh sách mã ghế đã được đặt cho một suất chiếu cụ thể
     public List<Integer> findBookedSeatsByShowtime(int maSuatChieu) {
         List<Integer> seatIds = new ArrayList<>();
         String sql = "SELECT ct.MaGhe FROM ChiTietDatVe ct " +
@@ -102,6 +133,7 @@ public class BookingDetailDAO {
         return seatIds;
     }
 
+    // Đếm số lượng vé đã được đặt cho một suất chiếu cụ thể
     public int countByShowtimeId(int maSuatChieu) {
         String sql = "SELECT COUNT(ct.MaChiTietDatVe) as total FROM ChiTietDatVe ct " +
                      "INNER JOIN DatVe dv ON ct.MaDon = dv.MaDon " +
@@ -120,6 +152,7 @@ public class BookingDetailDAO {
         return 0;
     }
 
+    // Ánh xạ ResultSet thành BookingDetail
     private BookingDetail mapResultSetToBookingDetail(ResultSet rs) throws SQLException {
         BookingDetail detail = new BookingDetail();
         detail.setMaChiTietDatVe(rs.getInt("MaChiTietDatVe"));

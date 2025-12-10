@@ -1,5 +1,4 @@
 -- Schema Database cho hệ thống đặt vé xem phim Reeltix
--- Tên bảng và thuộc tính tiếng Việt không dấu
 
 CREATE DATABASE IF NOT EXISTS reeltix CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE reeltix;

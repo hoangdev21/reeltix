@@ -42,20 +42,18 @@ public class BookingConfirmServlet extends HttpServlet {
         try {
             int showtimeId = Integer.parseInt(showtimeIdParam);
 
-            // Get showtime information
+            // Lấy thông tin suất chiếu
             Showtime showtime = showtimeDAO.findById(showtimeId);
             if (showtime == null) {
                 response.sendRedirect(request.getContextPath() + "/customer/home");
                 return;
             }
 
-            // Get movie information
+            // Lấy thông tin phim
             Movie movie = movieDAO.findById(showtime.getMaPhim());
 
-            // Get room information
+            // Lấy thông tin phòng chiếu
             Room room = roomDAO.findById(showtime.getMaPhong());
-
-            // Parse selected seats (format: "1,2,3" - seat IDs)
             String[] seatIdStrings = selectedSeatsParam.split(",");
             List<Seat> selectedSeats = new ArrayList<>();
             for (String seatIdStr : seatIdStrings) {
@@ -66,13 +64,11 @@ public class BookingConfirmServlet extends HttpServlet {
                 }
             }
 
-            // Parse total price
             double totalPrice = 0;
             if (totalPriceParam != null && !totalPriceParam.isEmpty()) {
                 totalPrice = Double.parseDouble(totalPriceParam);
             }
 
-            // Set attributes for JSP
             request.setAttribute("showtime", showtime);
             request.setAttribute("movie", movie);
             request.setAttribute("room", room);
@@ -90,7 +86,7 @@ public class BookingConfirmServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Redirect GET requests to home
+        // Chuyển hướng về trang chủ customer
         response.sendRedirect(request.getContextPath() + "/customer/home");
     }
 }

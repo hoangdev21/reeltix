@@ -11,6 +11,7 @@ import java.util.List;
 
 public class ShowtimeDAO {
 
+    // Tìm suất chiếu theo mã suất chiếu
     public Showtime findById(int maSuatChieu) {
         String sql = "SELECT sc.*, p.TenPhim, ph.TenPhong FROM SuatChieu sc " +
                      "LEFT JOIN Phim p ON sc.MaPhim = p.MaPhim " +
@@ -30,6 +31,7 @@ public class ShowtimeDAO {
         return null;
     }
 
+    // Lấy tất cả suất chiếu, sắp xếp theo ngày chiếu giảm dần và giờ chiếu
     public List<Showtime> findAll() {
         List<Showtime> showtimes = new ArrayList<>();
         String sql = "SELECT sc.*, p.TenPhim, ph.TenPhong FROM SuatChieu sc " +
@@ -48,6 +50,7 @@ public class ShowtimeDAO {
         return showtimes;
     }
 
+    // Tìm suất chiếu theo mã phim đang mở cửa
     public List<Showtime> findByMovie(int maPhim) {
         List<Showtime> showtimes = new ArrayList<>();
         String sql = "SELECT sc.*, p.TenPhim, ph.TenPhong FROM SuatChieu sc " +
@@ -68,6 +71,7 @@ public class ShowtimeDAO {
         return showtimes;
     }
 
+    // Tìm suất chiếu theo mã phim và ngày chiếu đang mở cửa
     public List<Showtime> findByMovieAndDate(int maPhim, LocalDate ngayChieu) {
         List<Showtime> showtimes = new ArrayList<>();
         String sql = "SELECT sc.*, p.TenPhim, ph.TenPhong FROM SuatChieu sc " +
@@ -89,6 +93,7 @@ public class ShowtimeDAO {
         return showtimes;
     }
 
+    // Thêm suất chiếu mới
     public boolean insert(Showtime showtime) {
         String sql = "INSERT INTO SuatChieu (MaPhim, MaPhong, NgayChieu, GioChieu, GiaVe, TrangThai) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getNewConnection();
@@ -115,6 +120,7 @@ public class ShowtimeDAO {
         return false;
     }
 
+    // Cập nhật thông tin suất chiếu
     public boolean update(Showtime showtime) {
         String sql = "UPDATE SuatChieu SET MaPhim = ?, MaPhong = ?, NgayChieu = ?, GioChieu = ?, GiaVe = ?, TrangThai = ? WHERE MaSuatChieu = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -134,6 +140,7 @@ public class ShowtimeDAO {
         return false;
     }
 
+    // Xóa suất chiếu theo mã suất chiếu
     public boolean delete(int maSuatChieu) {
         String sql = "DELETE FROM SuatChieu WHERE MaSuatChieu = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -146,6 +153,7 @@ public class ShowtimeDAO {
         return false;
     }
 
+    // Chuyển đổi ResultSet thành đối tượng Showtime
     private Showtime mapResultSetToShowtime(ResultSet rs) throws SQLException {
         Showtime showtime = new Showtime();
         showtime.setMaSuatChieu(rs.getInt("MaSuatChieu"));

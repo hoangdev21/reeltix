@@ -9,6 +9,7 @@ import java.util.List;
 
 public class SeatDAO {
 
+    // Tìm ghế ngồi theo mã ghế
     public Seat findById(int maGhe) {
         String sql = "SELECT * FROM GheNgoi WHERE MaGhe = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -25,6 +26,7 @@ public class SeatDAO {
         return null;
     }
 
+    // Tìm tất cả ghế ngồi theo mã phòng
     public List<Seat> findByRoom(int maPhong) {
         List<Seat> seats = new ArrayList<>();
         String sql = "SELECT * FROM GheNgoi WHERE MaPhong = ? ORDER BY TenGhe";
@@ -42,6 +44,7 @@ public class SeatDAO {
         return seats;
     }
 
+    // Tìm tất cả ghế ngồi đang hoạt động theo mã phòng
     public List<Seat> findAvailableByRoom(int maPhong) {
         List<Seat> seats = new ArrayList<>();
         String sql = "SELECT * FROM GheNgoi WHERE MaPhong = ? AND TrangThai = 'HoatDong' ORDER BY TenGhe";
@@ -59,6 +62,7 @@ public class SeatDAO {
         return seats;
     }
 
+    // Thêm mới ghế ngồi
     public boolean insert(Seat seat) {
         String sql = "INSERT INTO GheNgoi (MaPhong, TenGhe, LoaiGhe, GiaGhe, TrangThai) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getNewConnection();
@@ -84,6 +88,7 @@ public class SeatDAO {
         return false;
     }
 
+    // Cập nhật thông tin ghế ngồi
     public boolean update(Seat seat) {
         String sql = "UPDATE GheNgoi SET MaPhong = ?, TenGhe = ?, LoaiGhe = ?, GiaGhe = ?, TrangThai = ? WHERE MaGhe = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -102,6 +107,7 @@ public class SeatDAO {
         return false;
     }
 
+    // Xóa ghế ngồi theo mã ghế
     public boolean delete(int maGhe) {
         String sql = "DELETE FROM GheNgoi WHERE MaGhe = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -114,6 +120,7 @@ public class SeatDAO {
         return false;
     }
 
+    // Xóa ghế ngồi theo mã phòng
     public boolean deleteByRoom(int maPhong) {
         String sql = "DELETE FROM GheNgoi WHERE MaPhong = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -126,6 +133,7 @@ public class SeatDAO {
         return false;
     }
 
+    // Chuyển đổi ResultSet thành đối tượng Seat
     private Seat mapResultSetToSeat(ResultSet rs) throws SQLException {
         Seat seat = new Seat();
         seat.setMaGhe(rs.getInt("MaGhe"));

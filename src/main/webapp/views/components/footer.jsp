@@ -28,6 +28,11 @@
         font-size: 28px;
     }
 
+    .footer-logo {
+        height: 90px;
+        width: auto;
+    }
+
     .footer-description {
         color: #aaa;
         line-height: 1.6;
@@ -285,8 +290,7 @@
         <div class="row g-4">
             <div class="col-lg-4 col-md-6">
                 <div class="footer-brand">
-                    <i class="fas fa-film"></i>
-                    <span>Reeltix</span>
+                    <img src="${pageContext.request.contextPath}/assets/images/logo/logo-reel.png" alt="Reeltix Logo" class="footer-logo">
                 </div>
                 <p class="footer-description">
                     Hệ thống đặt vé xem phim trực tuyến hàng đầu Việt Nam.

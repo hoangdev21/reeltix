@@ -9,6 +9,7 @@ import java.util.List;
 
 public class UserDAO {
 
+    // Tìm người dùng theo tên đăng nhập
     public User findByUsername(String tenDangNhap) {
         String sql = "SELECT * FROM NguoiDung WHERE TenDangNhap = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -25,6 +26,7 @@ public class UserDAO {
         return null;
     }
 
+    // Tìm người dùng theo mã người dùng
     public User findById(int maNguoiDung) {
         String sql = "SELECT * FROM NguoiDung WHERE MaNguoiDung = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -41,6 +43,7 @@ public class UserDAO {
         return null;
     }
 
+    // Lấy tất cả người dùng, sắp xếp theo ngày tạo giảm dần
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM NguoiDung ORDER BY NgayTao DESC";
@@ -56,6 +59,7 @@ public class UserDAO {
         return users;
     }
 
+    // Thêm mới người dùng
     public boolean insert(User user) {
         String sql = "INSERT INTO NguoiDung (TenDangNhap, MatKhau, HoTen, Email, VaiTro, SoDienThoai, TrangThai) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getNewConnection();
@@ -83,6 +87,7 @@ public class UserDAO {
         return false;
     }
 
+    // Cập nhật thông tin người dùng
     public boolean update(User user) {
         String sql = "UPDATE NguoiDung SET TenDangNhap = ?, MatKhau = ?, HoTen = ?, Email = ?, VaiTro = ?, SoDienThoai = ?, TrangThai = ? WHERE MaNguoiDung = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -103,6 +108,7 @@ public class UserDAO {
         return false;
     }
 
+    // Xóa người dùng theo mã người dùng
     public boolean delete(int maNguoiDung) {
         String sql = "DELETE FROM NguoiDung WHERE MaNguoiDung = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -115,6 +121,7 @@ public class UserDAO {
         return false;
     }
 
+    // Xác thực người dùng
     public User authenticate(String tenDangNhap, String matKhau) {
         String sql = "SELECT * FROM NguoiDung WHERE TenDangNhap = ? AND MatKhau = ? AND TrangThai = 'HoatDong'";
         try (Connection conn = DBConnection.getNewConnection();
@@ -132,6 +139,7 @@ public class UserDAO {
         return null;
     }
 
+    // Đếm tổng số người dùng
     public int countAll() {
         String sql = "SELECT COUNT(*) FROM NguoiDung";
         try (Connection conn = DBConnection.getNewConnection();
@@ -146,6 +154,7 @@ public class UserDAO {
         return 0;
     }
 
+    // Tìm người dùng theo vai trò, trạng thái và từ khóa tìm kiếm
     public List<User> findByRoleAndStatus(String role, String status, String search) {
         List<User> users = new ArrayList<>();
         StringBuilder sql = new StringBuilder("SELECT * FROM NguoiDung WHERE 1=1");
@@ -187,6 +196,7 @@ public class UserDAO {
         return users;
     }
 
+    // Cập nhật trạng thái người dùng
     public boolean updateStatus(int maNguoiDung, String trangThai) {
         String sql = "UPDATE NguoiDung SET TrangThai = ? WHERE MaNguoiDung = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -200,6 +210,7 @@ public class UserDAO {
         return false;
     }
 
+    // Ánh xạ ResultSet thành đối tượng User
     private User mapResultSetToUser(ResultSet rs) throws SQLException {
         User user = new User();
         user.setMaNguoiDung(rs.getInt("MaNguoiDung"));

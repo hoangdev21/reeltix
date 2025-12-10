@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -55,7 +56,7 @@
                                 <div class="col-md-6">
                                     <p><i class="fas fa-couch me-2"></i><strong>Ghế:</strong> ${booking.danhSachGhe}</p>
                                     <p><i class="fas fa-ticket-alt me-2"></i><strong>Số lượng:</strong> ${booking.soLuongVe} vé</p>
-                                    <p><i class="fas fa-money-bill me-2"></i><strong>Tổng tiền:</strong> <span class="text-danger">${booking.tongTien}đ</span></p>
+                                    <p><i class="fas fa-money-bill me-2"></i><strong>Tổng tiền:</strong> <span class="text-danger"><fmt:formatNumber value="${booking.tongTien}" type="number" groupingUsed="true" maxFractionDigits="0"/> VNĐ</span></p>
                                 </div>
                             </div>
                         </div>

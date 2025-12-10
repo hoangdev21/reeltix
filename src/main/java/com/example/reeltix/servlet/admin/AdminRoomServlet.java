@@ -26,6 +26,12 @@ public class AdminRoomServlet extends HttpServlet {
             listRooms(request, response);
         } else if (pathInfo.equals("/add")) {
             // Form thêm phòng mới
+            // Lấy error từ session và chuyển sang request attribute
+            String error = (String) request.getSession().getAttribute("error");
+            if (error != null) {
+                request.setAttribute("error", error);
+                request.getSession().removeAttribute("error");
+            }
             request.getRequestDispatcher("/views/admin/room/add.jsp").forward(request, response);
         } else if (pathInfo.equals("/edit")) {
             // Form chỉnh sửa phòng
@@ -59,6 +65,7 @@ public class AdminRoomServlet extends HttpServlet {
         }
     }
 
+    // Hiển thị danh sách phòng
     private void listRooms(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Lấy message từ session và chuyển sang request attribute
@@ -79,6 +86,7 @@ public class AdminRoomServlet extends HttpServlet {
         request.getRequestDispatcher("/views/admin/room/list.jsp").forward(request, response);
     }
 
+    // Hiển thị form chỉnh sửa phòng
     private void editRoom(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String idParam = request.getParameter("id");
@@ -92,12 +100,13 @@ public class AdminRoomServlet extends HttpServlet {
                     return;
                 }
             } catch (NumberFormatException e) {
-                // Invalid ID format
+                e.printStackTrace();
             }
         }
         response.sendRedirect(request.getContextPath() + "/admin/rooms");
     }
 
+    // Hiển thị form cấu hình ghế
     private void seatConfig(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String idParam = request.getParameter("id");
@@ -111,20 +120,29 @@ public class AdminRoomServlet extends HttpServlet {
                     return;
                 }
             } catch (NumberFormatException e) {
-                // Invalid ID format
             }
         }
         response.sendRedirect(request.getContextPath() + "/admin/rooms");
     }
 
+    // Xử lý thêm phòng mới
     private void addRoom(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String tenPhong = request.getParameter("tenPhong");
-        String soLuongGheStr = request.getParameter("soLuongGhe");
+        String soHangStr = request.getParameter("soHang");
+        String soCotStr = request.getParameter("soCot");
         String trangThai = request.getParameter("trangThai");
 
         try {
-            int soLuongGhe = Integer.parseInt(soLuongGheStr);
+            int soHang = Integer.parseInt(soHangStr);
+            int soCot = Integer.parseInt(soCotStr);
+            int soLuongGhe = soHang * soCot;
+
+            if (soLuongGhe <= 0) {
+                request.getSession().setAttribute("error", "Số lượng ghế phải lớn hơn 0!");
+                response.sendRedirect(request.getContextPath() + "/admin/rooms/add");
+                return;
+            }
 
             Room room = new Room();
             room.setTenPhong(tenPhong);
@@ -133,26 +151,38 @@ public class AdminRoomServlet extends HttpServlet {
 
             if (roomDAO.insert(room)) {
                 request.getSession().setAttribute("message", "Thêm phòng chiếu thành công!");
+                response.sendRedirect(request.getContextPath() + "/admin/rooms");
             } else {
                 request.getSession().setAttribute("error", "Không thể thêm phòng chiếu!");
+                response.sendRedirect(request.getContextPath() + "/admin/rooms/add");
             }
         } catch (NumberFormatException e) {
-            request.getSession().setAttribute("error", "Số lượng ghế không hợp lệ!");
+            request.getSession().setAttribute("error", "Dữ liệu số hàng và số cột không hợp lệ!");
+            response.sendRedirect(request.getContextPath() + "/admin/rooms/add");
         }
-
-        response.sendRedirect(request.getContextPath() + "/admin/rooms");
     }
 
+    // Xử lý cập nhật phòng
     private void updateRoom(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String idParam = request.getParameter("id");
+        String idParam = request.getParameter("maPhong");
         String tenPhong = request.getParameter("tenPhong");
-        String soLuongGheStr = request.getParameter("soLuongGhe");
+        String soHangStr = request.getParameter("soHang");
+        String soCotStr = request.getParameter("soCot");
         String trangThai = request.getParameter("trangThai");
 
+        int id = 0;
         try {
-            int id = Integer.parseInt(idParam);
-            int soLuongGhe = Integer.parseInt(soLuongGheStr);
+            id = Integer.parseInt(idParam);
+            int soHang = Integer.parseInt(soHangStr);
+            int soCot = Integer.parseInt(soCotStr);
+            int soLuongGhe = soHang * soCot;
+
+            if (soLuongGhe <= 0) {
+                request.getSession().setAttribute("error", "Số lượng ghế phải lớn hơn 0!");
+                response.sendRedirect(request.getContextPath() + "/admin/rooms/edit?id=" + id);
+                return;
+            }
 
             Room room = new Room();
             room.setMaPhong(id);
@@ -162,16 +192,18 @@ public class AdminRoomServlet extends HttpServlet {
 
             if (roomDAO.update(room)) {
                 request.getSession().setAttribute("message", "Cập nhật phòng chiếu thành công!");
+                response.sendRedirect(request.getContextPath() + "/admin/rooms");
             } else {
                 request.getSession().setAttribute("error", "Không thể cập nhật phòng chiếu!");
+                response.sendRedirect(request.getContextPath() + "/admin/rooms/edit?id=" + id);
             }
         } catch (NumberFormatException e) {
             request.getSession().setAttribute("error", "Dữ liệu không hợp lệ!");
+            response.sendRedirect(request.getContextPath() + "/admin/rooms/edit?id=" + id);
         }
-
-        response.sendRedirect(request.getContextPath() + "/admin/rooms");
     }
 
+    // Xử lý xóa phòng
     private void deleteRoom(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String idParam = request.getParameter("id");

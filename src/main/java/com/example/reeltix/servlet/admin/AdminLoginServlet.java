@@ -16,6 +16,7 @@ public class AdminLoginServlet extends HttpServlet {
 
     private UserDAO userDAO = new UserDAO();
 
+    // Hiển thị trang đăng nhập admin
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -28,6 +29,7 @@ public class AdminLoginServlet extends HttpServlet {
         request.getRequestDispatcher("/views/admin/login.jsp").forward(request, response);
     }
 
+    // Xử lý đăng nhập admin
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

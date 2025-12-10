@@ -111,7 +111,7 @@
                                             <td>${booking.soLuongVe}</td>
                                             <td>
                                                 <strong class="text-success">
-                                                    <fmt:formatNumber value="${booking.tongTien}" type="currency" currencySymbol="" maxFractionDigits="0"/>đ
+                                                    <fmt:formatNumber value="${booking.tongTien}" type="number" groupingUsed="true" maxFractionDigits="0"/> VNĐ
                                                 </strong>
                                             </td>
                                             <td>

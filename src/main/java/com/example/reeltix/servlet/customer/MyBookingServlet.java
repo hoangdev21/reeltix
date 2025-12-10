@@ -1,6 +1,7 @@
 package com.example.reeltix.servlet.customer;
 
 import com.example.reeltix.dao.BookingDAO;
+import com.example.reeltix.dao.BookingDetailDAO;
 import com.example.reeltix.dao.MovieDAO;
 import com.example.reeltix.dao.PaymentDAO;
 import com.example.reeltix.dao.ShowtimeDAO;
@@ -28,6 +29,7 @@ public class MyBookingServlet extends HttpServlet {
     private final MovieDAO movieDAO = new MovieDAO();
     private final ShowtimeDAO showtimeDAO = new ShowtimeDAO();
     private final PaymentDAO paymentDAO = new PaymentDAO();
+    private final BookingDetailDAO bookingDetailDAO = new BookingDetailDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,32 +42,31 @@ public class MyBookingServlet extends HttpServlet {
         }
 
         try {
-            // Get user ID from session
+            // Lấy thông tin người dùng từ session
             Object userObj = session.getAttribute("user");
             int userId = 0;
             if (userObj instanceof com.example.reeltix.model.User) {
                 userId = ((com.example.reeltix.model.User) userObj).getMaNguoiDung();
             }
 
-            // Get all bookings for this user
+            // Lấy danh sách đặt vé của người dùng
             List<Booking> bookings = bookingDAO.findByCustomer(userId);
 
-            // Enrich bookings with movie, showtime, and payment information
+            // Bổ sung thông tin chi tiết cho mỗi đặt vé
             List<Map<String, Object>> enrichedBookings = new ArrayList<>();
             for (Booking booking : bookings) {
                 Map<String, Object> bookingInfo = new HashMap<>();
 
-                // Get showtime and movie details
+                // Lấy thông tin suất chiếu và phim
                 Showtime showtime = showtimeDAO.findById(booking.getMaSuatChieu());
                 Movie movie = null;
                 if (showtime != null) {
                     movie = movieDAO.findById(showtime.getMaPhim());
                 }
 
-                // Get payment information
+                // Lấy thông tin thanh toán
                 Payment payment = paymentDAO.findByBooking(booking.getMaDon());
 
-                // Build enriched booking info
                 bookingInfo.put("maDon", booking.getMaDon());
                 bookingInfo.put("soLuongVe", booking.getSoLuongVe());
                 bookingInfo.put("tongTien", booking.getTongTien());
@@ -79,6 +80,10 @@ public class MyBookingServlet extends HttpServlet {
                 if (showtime != null) {
                     bookingInfo.put("ngayChieu", showtime.getNgayChieu());
                     bookingInfo.put("gioChieu", showtime.getGioChieu());
+                    // Thêm thông tin tenPhong từ showtime
+                    if (showtime.getTenPhong() != null) {
+                        bookingInfo.put("tenPhong", showtime.getTenPhong());
+                    }
                 }
 
                 if (payment != null) {
@@ -87,10 +92,13 @@ public class MyBookingServlet extends HttpServlet {
                     bookingInfo.put("phuongThuc", payment.getPhuongThuc());
                 }
 
+                // Lấy danh sách ghế từ chi tiết đặt vé
+                String danhSachGhe = bookingDetailDAO.getSeatNamesString(booking.getMaDon());
+                bookingInfo.put("danhSachGhe", danhSachGhe);
+
                 enrichedBookings.add(bookingInfo);
             }
 
-            // Set attribute for JSP
             request.setAttribute("bookings", enrichedBookings);
 
             request.getRequestDispatcher("/views/customer/my-bookings.jsp").forward(request, response);

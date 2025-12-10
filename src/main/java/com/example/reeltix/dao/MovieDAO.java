@@ -9,6 +9,7 @@ import java.util.List;
 
 public class MovieDAO {
 
+    // Tìm phim theo mã phim
     public Movie findById(int maPhim) {
         String sql = "SELECT * FROM Phim WHERE MaPhim = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -25,6 +26,7 @@ public class MovieDAO {
         return null;
     }
 
+    // Lấy tất cả phim, sắp xếp theo ngày tạo giảm dần
     public List<Movie> findAll() {
         List<Movie> movies = new ArrayList<>();
         String sql = "SELECT * FROM Phim ORDER BY NgayTao DESC";
@@ -40,6 +42,7 @@ public class MovieDAO {
         return movies;
     }
 
+    // Tìm phim theo trạng thái (DangChieu, SapChieu)
     public List<Movie> findByStatus(String trangThai) {
         List<Movie> movies = new ArrayList<>();
         String sql = "SELECT * FROM Phim WHERE TrangThai = ? ORDER BY NgayKhoiChieu DESC";
@@ -65,6 +68,7 @@ public class MovieDAO {
         return findByStatus("SapChieu");
     }
 
+    // Thêm phim mới
     public boolean insert(Movie movie) {
         String sql = "INSERT INTO Phim (TenPhim, MoTa, AnhPoster, ThoiLuong, DaoDien, DienVien, TheLoai, TrangThai, NgayKhoiChieu) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getNewConnection();
@@ -94,6 +98,7 @@ public class MovieDAO {
         return false;
     }
 
+    // Cập nhật thông tin phim
     public boolean update(Movie movie) {
         String sql = "UPDATE Phim SET TenPhim = ?, MoTa = ?, AnhPoster = ?, ThoiLuong = ?, DaoDien = ?, DienVien = ?, TheLoai = ?, TrangThai = ?, NgayKhoiChieu = ? WHERE MaPhim = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -116,6 +121,7 @@ public class MovieDAO {
         return false;
     }
 
+    // Xóa phim theo mã phim
     public boolean delete(int maPhim) {
         String sql = "DELETE FROM Phim WHERE MaPhim = ?";
         try (Connection conn = DBConnection.getNewConnection();
@@ -128,6 +134,7 @@ public class MovieDAO {
         return false;
     }
 
+    // Tìm kiếm phim theo từ khóa trong tên phim, đạo diễn, diễn viên, thể loại
     public List<Movie> search(String keyword) {
         List<Movie> movies = new ArrayList<>();
         String sql = "SELECT * FROM Phim WHERE TenPhim LIKE ? OR DaoDien LIKE ? OR DienVien LIKE ? OR TheLoai LIKE ? ORDER BY NgayTao DESC";
@@ -149,6 +156,7 @@ public class MovieDAO {
         return movies;
     }
 
+    // Đếm tổng số phim
     public int countAll() {
         String sql = "SELECT COUNT(*) FROM Phim";
         try (Connection conn = DBConnection.getNewConnection();
@@ -163,6 +171,7 @@ public class MovieDAO {
         return 0;
     }
 
+    // Tìm phim theo trạng thái và từ khóa tìm kiếm
     public List<Movie> findByStatusAndSearch(String status, String search) {
         List<Movie> movies = new ArrayList<>();
         StringBuilder sql = new StringBuilder("SELECT * FROM Phim WHERE 1=1");
@@ -195,6 +204,7 @@ public class MovieDAO {
         return movies;
     }
 
+    // Ánh xạ ResultSet thành đối tượng Movie
     private Movie mapResultSetToMovie(ResultSet rs) throws SQLException {
         Movie movie = new Movie();
         movie.setMaPhim(rs.getInt("MaPhim"));

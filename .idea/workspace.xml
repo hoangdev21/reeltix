@@ -9,7 +9,69 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eebdea06-aee1-409a-9770-2d2e64d5c242" name="Changes" comment="" />
+    <list default="true" id="eebdea06-aee1-409a-9770-2d2e64d5c242" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/customer/ProfileServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/DatVe.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/Film.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/chao-mung.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/logo-dashboard/dondat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/logo-dashboard/money.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/logo-dashboard/phim.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/logo-dashboard/user.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/logo/logo-reel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/phim-dang-chieu.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/statistic/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/BookingDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/BookingDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/BookingDetailDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/BookingDetailDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/MovieDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/MovieDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/PaymentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/PaymentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/RoomDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/RoomDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/SeatDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/SeatDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/ShowtimeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/ShowtimeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/filter/AdminAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/filter/AdminAuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/filter/CharacterEncodingFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/filter/CharacterEncodingFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/filter/CustomerAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/filter/CustomerAuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/model/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/model/Booking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/model/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/HomeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/HomeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/PosterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/PosterServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/AdminBookingServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/AdminBookingServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/AdminLoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/AdminLoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/AdminMovieServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/AdminMovieServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/AdminRoomServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/AdminRoomServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/AdminShowtimeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/AdminShowtimeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/AdminUserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/AdminUserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/DashboardServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/DashboardServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/StatisticServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/admin/StatisticServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/auth/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/auth/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/auth/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/auth/RegisterServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/customer/BookingConfirmServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/customer/BookingConfirmServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/customer/BookingServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/customer/HomeServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/customer/MovieDetailServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/customer/MyBookingServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/customer/MyBookingServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/customer/PaymentServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/customer/PaymentServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/customer/SeatSelectionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/customer/SeatSelectionServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/customer/ShowtimeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/servlet/customer/ShowtimeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/reeltix/util/FileUploadUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/reeltix/util/FileUploadUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/images/slide1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/hero-bg.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/booking/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/booking/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/dashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/room/add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/room/add.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/admin/room/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/admin/room/edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/components/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/components/footer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/components/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/components/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/customer/booking-confirm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/customer/booking-confirm.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/customer/booking-success.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/customer/booking-success.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/customer/movie-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/customer/movie-detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/customer/my-bookings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/customer/my-bookings.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/views/customer/seat-selection.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/views/customer/seat-selection.jsp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +85,21 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;hoangdev21&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/hoangdev21/reeltix.git&quot;,
+    &quot;accountId&quot;: &quot;f1ad3b70-7b34-44c2-ac9d-6583902dc988&quot;
+  }
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -45,6 +122,9 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="36akpJQD0LIU5bjElmmfuyd9TcL" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="false" />
@@ -56,9 +136,12 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;Tomcat Server.Tomcat 10.1.47.executor&quot;: &quot;Run&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Workspace/ltweb/final/reeltix/src/main/webapp/assets/images/logo&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -69,6 +152,16 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Workspace\ltweb\final\reeltix\src\main\webapp\assets\images\logo" />
+      <recent name="D:\Workspace\ltweb\final\reeltix\src\main\webapp\assets\images" />
+      <recent name="D:\Workspace\ltweb\final\reeltix\src\main\webapp\assets\images\logo-dashboard" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Workspace\ltweb\final\reeltix\src\main\webapp\assets\images" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationStatuses">
       <map>
@@ -89,7 +182,7 @@
       <deployment>
         <artifact name="reeltix:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/reeltix_war_exploded" />
+            <option name="CONTEXT_PATH" value="/reeltix" />
           </settings>
         </artifact>
       </deployment>
@@ -101,6 +194,54 @@
       <predefined_log_file id="Tomcat Manager" />
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="50942" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
@@ -145,7 +286,10 @@
       <workItem from="1765265102300" duration="268000" />
       <workItem from="1765265384014" duration="222000" />
       <workItem from="1765265618760" duration="11538000" />
-      <workItem from="1765294815774" duration="1452000" />
+      <workItem from="1765294815774" duration="4992000" />
+      <workItem from="1765300710037" duration="1617000" />
+      <workItem from="1765339797794" duration="8772000" />
+      <workItem from="1765351950028" duration="463000" />
     </task>
     <servers />
   </component>
